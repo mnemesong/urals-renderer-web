@@ -5,6 +5,9 @@ import sneaker.assertion.Asserter.*;
 
 using StringTools;
 
+/**
+    Unit-rest for StaticRender
+**/
 class Main
 {
     public static function main() {

@@ -13,9 +13,13 @@ private typedef RenderBundle<M, Id> = {
 
 private typedef Entity<M, Id> = {val: M, id: Id};
 
+/**
+    Renders element, created by RenderBundle into browser by selector and
+    execute after-render function 
+**/
 function browserRender<M, Id>(
     elements: Array<Entity<M, Id>>, 
-    getRootSelector: (el: Entity<M, Id>) -> String, //Селектор контейнера, а не родительского виджета
+    getRootSelector: (el: Entity<M, Id>) -> String, //Where host new elem
     renderBundle: RenderBundle<M, Id>,
     afterRender: (elHtml: Element, el: Entity<M, Id>) -> Void
 ): Void {

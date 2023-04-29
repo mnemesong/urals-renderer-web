@@ -12,10 +12,14 @@ private typedef RenderBundle<M, Id> = {
 
 private typedef Entity<M, Id> = {val: M, id: Id};
 
+/**
+    Renders element, created by RenderBundle into html-string by selector and
+    returns result as string
+**/
 @:pure
 function staticRender<M, Id>(
     elements, 
-    getRootSelector: (el: Entity<M, Id>) -> String, 
+    getRootSelector: (el: Entity<M, Id>) -> String, //Where host new elem
     renderBundle: RenderBundle<M, Id>,
     template: String
 ): String {

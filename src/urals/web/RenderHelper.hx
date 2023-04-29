@@ -1,5 +1,9 @@
 package urals.web;
 
+/**
+    Group elements by selector
+**/
+@:pure
 function renderRegroup<M>(
     arr: Array<M>, 
     assoc: (m: M) -> String
