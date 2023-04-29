@@ -1,0 +1,15 @@
+{
+    "name": "urals-renderer-web",
+    "url" : "https://github.com/mnemesong/urals-renderer-web",
+    "license": "MIT",
+    "tags": ["haxe", "widget", "render", "web", "browser"],
+    "description": "Functions for render element in html: staticly and in browser",
+    "version": "0.0.1",
+    "releasenote": "Release",
+    "contributors": ["Anatoly_Starodubtsev"],
+    "dependencies": {
+      "urals-id-renderer": "",
+      "HtmlParser": ""
+    },
+    "classPath": "src/"
+  }
