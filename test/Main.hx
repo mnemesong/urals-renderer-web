@@ -1,6 +1,6 @@
 package;
 
-import urals.web.StaticRender.staticRender;
+import urals.web.StaticRenderer.staticRender;
 import sneaker.assertion.Asserter.*;
 
 using StringTools;

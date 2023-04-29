@@ -1,39 +1,4 @@
 (function ($global) { "use strict";
-function $extend(from, fields) {
-	var proto = Object.create(from);
-	for (var name in fields) proto[name] = fields[name];
-	if( fields.toString !== Object.prototype.toString ) proto.toString = fields.toString;
-	return proto;
-}
-var EReg = function(r,opt) {
-	this.r = new RegExp(r,opt.split("u").join(""));
-};
-EReg.prototype = {
-	match: function(s) {
-		if(this.r.global) {
-			this.r.lastIndex = 0;
-		}
-		this.r.m = this.r.exec(s);
-		this.r.s = s;
-		return this.r.m != null;
-	}
-};
-var HxOverrides = function() { };
-HxOverrides.substr = function(s,pos,len) {
-	if(len == null) {
-		len = s.length;
-	} else if(len < 0) {
-		if(pos == 0) {
-			len = s.length + len;
-		} else {
-			return "";
-		}
-	}
-	return s.substr(pos,len);
-};
-HxOverrides.now = function() {
-	return Date.now();
-};
 var Spa = function() { };
 Spa.getAll = function() {
 	var result = [];
@@ -49,7 +14,7 @@ Spa.rerender = function() {
 	var renderId = function(id) {
 		return "click_block_" + (id == null ? "null" : "" + id);
 	};
-	urals_web_BrowserRender_browserRender(Spa.getAll(),function(el) {
+	urals_web_BrowserRenderer_browserRender(Spa.getAll(),function(el) {
 		return "body";
 	},{ renderId : renderId, template : function(m,id) {
 		return "<div id=\"" + renderId(id) + "\">" + m.s + "</div>";
@@ -63,42 +28,6 @@ Spa.rerender = function() {
 Spa.main = function() {
 	Spa.rerender();
 };
-var Std = function() { };
-Std.parseInt = function(x) {
-	if(x != null) {
-		var _g = 0;
-		var _g1 = x.length;
-		while(_g < _g1) {
-			var i = _g++;
-			var c = x.charCodeAt(i);
-			if(c <= 8 || c >= 14 && c != 32 && c != 45) {
-				var nc = x.charCodeAt(i + 1);
-				var v = parseInt(x,nc == 120 || nc == 88 ? 16 : 10);
-				if(isNaN(v)) {
-					return null;
-				} else {
-					return v;
-				}
-			}
-		}
-	}
-	return null;
-};
-var haxe_Exception = function(message,previous,native) {
-	Error.call(this,message);
-	this.message = message;
-	this.__previousException = previous;
-	this.__nativeException = native != null ? native : this;
-};
-haxe_Exception.__super__ = Error;
-haxe_Exception.prototype = $extend(Error.prototype,{
-	toString: function() {
-		return this.get_message();
-	}
-	,get_message: function() {
-		return this.message;
-	}
-});
 var haxe_iterators_ArrayIterator = function(array) {
 	this.current = 0;
 	this.array = array;
@@ -111,43 +40,7 @@ haxe_iterators_ArrayIterator.prototype = {
 		return this.array[this.current++];
 	}
 };
-var urals_IdMatchHelper = function() { };
-urals_IdMatchHelper.isIdMatch = function(s) {
-	return new EReg("[a-zA-Z_\\-]+[a-zA-Z_0-9\\-]*","").match(s);
-};
-urals_IdMatchHelper.assertIdMatch = function(s) {
-	if(urals_IdMatchHelper.isIdMatch(s) == false) {
-		throw new haxe_Exception("String " + s + " is not may be valid htmlId");
-	}
-};
-urals_IdMatchHelper.isContainsPrefix = function(s,pref) {
-	return s.indexOf(pref) == 0;
-};
-urals_IdMatchHelper.assertContainsPrefix = function(s,pref) {
-	if(urals_IdMatchHelper.isContainsPrefix(s,pref) == false) {
-		throw new haxe_Exception("String " + s + " is not contains prefix " + pref);
-	}
-};
-urals_IdMatchHelper.removePrefix = function(s,pref) {
-	urals_IdMatchHelper.assertContainsPrefix(s,pref);
-	return HxOverrides.substr(s,pref.length,null);
-};
-var urals_IntIdRenderer = function(pref) {
-	if(pref == null) {
-		pref = "";
-	}
-	urals_IdMatchHelper.assertIdMatch(pref);
-	this.pref = pref;
-};
-urals_IntIdRenderer.prototype = {
-	renderId: function(id) {
-		return this.pref + (id == null ? "null" : "" + id);
-	}
-	,parseId: function(id) {
-		return Std.parseInt(urals_IdMatchHelper.removePrefix(id,this.pref));
-	}
-};
-function urals_web_BrowserRender_browserRender(elements,getRootSelector,renderBundle,afterRender) {
+function urals_web_BrowserRenderer_browserRender(elements,getRootSelector,renderBundle,afterRender) {
 	var doc = window.document;
 	var group = urals_web_RenderHelper_renderRegroup(elements,getRootSelector);
 	var _g = 0;
@@ -211,9 +104,6 @@ function urals_web_RenderHelper_renderRegroup(arr,assoc) {
 		result = result1;
 	}
 	return result;
-}
-if(typeof(performance) != "undefined" ? typeof(performance.now) == "function" : false) {
-	HxOverrides.now = performance.now.bind(performance);
 }
 Spa.stor = ["Click on me!"];
 Spa.main();

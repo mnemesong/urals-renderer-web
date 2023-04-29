@@ -1,6 +1,5 @@
 import js.html.Element;
-import urals.IntIdRenderer;
-import urals.web.BrowserRender.browserRender;
+import urals.web.BrowserRenderer.browserRender;
 
 class Spa
 {

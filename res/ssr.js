@@ -145,7 +145,7 @@ Ssr.main = function() {
 	var renderBundle = { template : function(m,id) {
 		return "<div id=\"" + renderId(id) + "\">" + m.s + "</div>";
 	}, renderId : renderId};
-	html = urals_web_StaticRender_staticRender([{ id : 2, val : { s : "Hello!"}}],function(el) {
+	html = urals_web_StaticRenderer_staticRender([{ id : 2, val : { s : "Hello!"}}],function(el) {
 		return "body";
 	},renderBundle,html);
 	window.document.body.outerHTML = html;
@@ -3346,7 +3346,7 @@ function urals_web_RenderHelper_renderRegroup(arr,assoc) {
 	}
 	return result;
 }
-function urals_web_StaticRender_staticRender(elements,getRootSelector,renderBundle,template) {
+function urals_web_StaticRenderer_staticRender(elements,getRootSelector,renderBundle,template) {
 	var renderEl = function(el) {
 		return renderBundle.template(el.val,el.id);
 	};
