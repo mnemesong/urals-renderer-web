@@ -12,7 +12,8 @@ private typedef RenderBundle<M, Id> = {
 
 private typedef Entity<M, Id> = {val: M, id: Id};
 
-function ssr<M, Id>(
+@:pure
+function staticRender<M, Id>(
     elements, 
     getRootSelector: (el: Entity<M, Id>) -> String, 
     renderBundle: RenderBundle<M, Id>,

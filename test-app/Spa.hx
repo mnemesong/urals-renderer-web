@@ -1,7 +1,8 @@
 import js.html.Element;
 import urals.IntIdRenderer;
+import urals.web.BrowserRender.browserRender;
 
-class Main 
+class Spa
 {
     static var stor = [
         "Click on me!"
@@ -16,9 +17,14 @@ class Main
     }
 
     private static function rerender() {
-        rend.rerenderInSpa(
+        var renderId = (id: Int) -> "click_block_" + Std.string(id);
+        browserRender(
             getAll(), 
-            (el) -> "body", 
+            (el) -> "body",
+            {
+                renderId: renderId,
+                template: (m: {s: String}, id: Int) -> '<div id="${renderId(id)}">${m.s}</div>'
+            },
             (elHtml: Element, el: {id: Int, val: {s: String}}) -> {
                 elHtml.onclick = (event) -> {
                     stor.push("Click on me!");
@@ -29,8 +35,6 @@ class Main
     }
 
     public static function main() {
-        rend = new SpaWidgetRenderer(
-            new WebWidgetStub("w", new IntIdRenderer("w_")));
         rerender();
     }
 }

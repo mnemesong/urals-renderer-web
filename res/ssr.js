@@ -145,7 +145,7 @@ Ssr.main = function() {
 	var renderBundle = { template : function(m,id) {
 		return "<div id=\"" + renderId(id) + "\">" + m.s + "</div>";
 	}, renderId : renderId};
-	html = urals_web_SsrRender_ssr([{ id : 2, val : { s : "Hello!"}}],function(el) {
+	html = urals_web_StaticRender_staticRender([{ id : 2, val : { s : "Hello!"}}],function(el) {
 		return "body";
 	},renderBundle,html);
 	window.document.body.outerHTML = html;
@@ -3314,7 +3314,7 @@ var sneaker_tag_TagExtension = function() { };
 sneaker_tag_TagExtension.__name__ = true;
 var sneaker_tag_Tags = function() { };
 sneaker_tag_Tags.__name__ = true;
-function urals_web_RenderHelper_regroup(arr,assoc) {
+function urals_web_RenderHelper_renderRegroup(arr,assoc) {
 	var result = [];
 	var _g = 0;
 	var _g1 = arr.length;
@@ -3346,11 +3346,11 @@ function urals_web_RenderHelper_regroup(arr,assoc) {
 	}
 	return result;
 }
-function urals_web_SsrRender_ssr(elements,getRootSelector,renderBundle,template) {
+function urals_web_StaticRender_staticRender(elements,getRootSelector,renderBundle,template) {
 	var renderEl = function(el) {
 		return renderBundle.template(el.val,el.id);
 	};
-	var groupedElements = urals_web_RenderHelper_regroup(elements,getRootSelector);
+	var groupedElements = urals_web_RenderHelper_renderRegroup(elements,getRootSelector);
 	var result = new Array(groupedElements.length);
 	var _g = 0;
 	var _g1 = groupedElements.length;

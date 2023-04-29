@@ -1,6 +1,6 @@
 package;
 
-import urals.web.SsrRender.ssr;
+import urals.web.StaticRender.staticRender;
 import sneaker.assertion.Asserter.*;
 import js.Browser;
 
@@ -16,7 +16,7 @@ class Ssr
                 -> '<div id="${renderId(id)}">${m.s}</div>',
             renderId: renderId
         }
-        html = ssr(
+        html = staticRender(
             [{id: 2, val: {s: "Hello!"}}],
             (el) -> "body",
             renderBundle,
