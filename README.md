@@ -65,6 +65,10 @@ trace(result);
 ```
 
 
+## Notice!
+For Client-side rendering use `package urals-renderer-web-js`
+
+
 ## Author
 Anatoly Starodubtsev
 Tostar74@mail.ru
