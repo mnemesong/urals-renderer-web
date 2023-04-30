@@ -2,9 +2,7 @@
 
 
 ## Description
-Functions for render web-element by template into html: 
-- staticly in html text for SSR
-- in browser by DOM with settings events after
+Functions for render web-element by template into html staticly for SSR
 
 
 ## Requirements
