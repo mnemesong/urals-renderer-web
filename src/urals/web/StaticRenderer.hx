@@ -1,7 +1,6 @@
 package urals.web;
 
 import htmlparser.HtmlDocument;
-import urals.web.RenderHelper;
 
 private typedef TemplateFunc<M, Id> = (m: M, id: Id) -> String;
 
@@ -11,6 +10,26 @@ private typedef RenderBundle<M, Id> = {
 };
 
 private typedef Entity<M, Id> = {val: M, id: Id};
+
+/**
+    Group elements by selector
+**/
+@:pure
+function groupBySelector<M>(
+    arr: Array<M>, 
+    selector: (m: M) -> String
+): Array<{assoc: String, arrs: Array<M>}> {
+    var result: Array<{assoc: String, arrs: Array<M>}> = [];
+    for (i in 0...arr.length) {
+        var t = selector(arr[i]);
+        if(result.filter(el -> el.assoc == t).length == 0) {
+            result.push({assoc: t, arrs: []});
+        }
+        result = result.map(el 
+            -> (el.assoc == t) ? {assoc: t, arrs: el.arrs.concat([arr[i]])} : el);
+    }
+    return result;
+}
 
 /**
     Renders element, created by RenderBundle into html-string by selector and
@@ -29,7 +48,7 @@ function staticRender<M, Id>(
             el.id
         );
     }
-    var groupedElements = renderRegroup(elements, getRootSelector);
+    var groupedElements = groupBySelector(elements, getRootSelector);
     var groupedWidgets: Array<{sel: String, arr: Array<String>}> = groupedElements
         .map(el -> {sel: el.assoc, arr: el.arrs.map(renderEl)});
     

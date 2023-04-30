@@ -1,7 +1,0 @@
---library sneaker
---library urals-id-renderer
---library HtmlParser
--cp src
--cp test-app
---main Spa
---js res/spa.js
