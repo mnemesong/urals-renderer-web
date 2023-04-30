@@ -51,13 +51,10 @@ function staticRender<M, Id>(
     var groupedElements = groupBySelector(elements, getRootSelector);
     var groupedWidgets: Array<{sel: String, arr: Array<String>}> = groupedElements
         .map(el -> {sel: el.assoc, arr: el.arrs.map(renderEl)});
-    
-    var html = new HtmlDocument(template);
+    var injector = new StaticHtmlInjector(template);
     for (s in 0...groupedWidgets.length) {
-        var targets = html.find(groupedWidgets[s].sel);
-        for (i in 0...targets.length) {
-            targets[i].innerHTML = groupedWidgets[s].arr.join("\n");
-        }
+        var injector =  injector
+            .replaceInnerhtml(groupedWidgets[s].sel, groupedWidgets[s].arr.join("\n"));
     }
-    return html.toString();
+    return injector.getResult();
 }
