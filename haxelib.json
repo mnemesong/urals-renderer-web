@@ -4,8 +4,8 @@
     "license": "MIT",
     "tags": ["haxe", "widget", "render", "web"],
     "description": "Functions for render elements in html",
-    "version": "0.1.1",
-    "releasenote": "Add html injector. Essence browser-target classes into specal package",
+    "version": "0.1.2",
+    "releasenote": "Update readme",
     "contributors": ["Anatoly_Starodubtsev"],
     "dependencies": {
       "urals-id-renderer": "",
