@@ -4,7 +4,7 @@
     "license": "MIT",
     "tags": ["haxe", "widget", "render", "web"],
     "description": "Make renderer abstract class with StaticRenderer realization",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "releasenote": "Update readme",
     "contributors": ["Anatoly_Starodubtsev"],
     "dependencies": {
