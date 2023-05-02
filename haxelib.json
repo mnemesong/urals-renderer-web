@@ -3,8 +3,8 @@
     "url" : "https://github.com/mnemesong/urals-renderer-web",
     "license": "MIT",
     "tags": ["haxe", "widget", "render", "web"],
-    "description": "Functions for render elements in html",
-    "version": "0.1.2",
+    "description": "Make renderer abstract class with StaticRenderer realization",
+    "version": "0.2.1",
     "releasenote": "Update readme",
     "contributors": ["Anatoly_Starodubtsev"],
     "dependencies": {

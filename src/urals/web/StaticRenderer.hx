@@ -8,7 +8,7 @@ class StaticRenderer<M, Id> extends AbstractRenderer<M, Id>
         this.template = template;
     }
 
-    public function render<M, Id>(
+    public function render(
         elements: Array<{id: Id, val: M}>, 
         getRootSelector: (el: {id: Id, val: M}) -> String,
         renderBundle: {

@@ -2,7 +2,7 @@ package urals.web;
 
 abstract class AbstractRenderer<M, Id>
 {
-    abstract public function render<M, Id>(
+    abstract public function render(
         elements: Array<{id: Id, val: M}>, 
         getRootSelector: (el: {id: Id, val: M}) -> String,
         renderBundle: {
@@ -15,7 +15,7 @@ abstract class AbstractRenderer<M, Id>
         Group elements by selector
     **/
     @:pure
-    public static function groupBySelector<M>(
+    public static function groupBySelector<M, Id>(
         arr: Array<M>, 
         selector: (m: M) -> String
     ): Array<{assoc: String, arrs: Array<M>}> {
