@@ -17,8 +17,12 @@ import urals.web.StaticRenderer.staticRender;
 var html = '
     <!DOCTYPE html>
     <html lang="en">
-        <head><meta charset="utf-8"></head>
-        <body></body>
+        <head>
+            <meta charset="utf-8">
+            <title></title>
+        </head>
+        <body>
+        </body>
     </html>';
 var renderId = (id: Int) -> "hb_" + Std.string(id);
 var renderBundle = {
@@ -26,12 +30,12 @@ var renderBundle = {
         -> '<div id="${renderId(id)}">${m.s}</div>',
     renderId: renderId
 }
-html = staticRender(
+var renderer = new StaticRenderer(html);
+html = renderer.render(
     [{id: 2, val: {s: "Hello!"}}],
     (el) -> "body",
-    renderBundle,
-    html
-);
+    renderBundle
+).getHtml();
 trace(html);
 //<!DOCTYPE html>
 //<html lang="en">
