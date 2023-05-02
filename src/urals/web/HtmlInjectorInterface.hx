@@ -1,7 +1,5 @@
 package urals.web;
 
-import haxe.Exception;
-
 interface HtmlInjectorInterface 
 {
     public function append(

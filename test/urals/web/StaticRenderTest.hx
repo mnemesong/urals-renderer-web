@@ -1,6 +1,6 @@
 package urals.web;
 
-import urals.web.StaticRenderer.staticRender;
+import urals.web.StaticRenderer;
 import sneaker.assertion.Asserter.*;
 
 using StringTools;
@@ -24,12 +24,12 @@ class StaticRenderTest
                 -> '<div id="${renderId(id)}">${m.s}</div>',
             renderId: renderId
         }
-        html = staticRender(
+        var renderer = new StaticRenderer(html);
+        html = renderer.render(
             [{id: 2, val: {s: "Hello!"}}],
             (el) -> "body",
-            renderBundle,
-            html
-        );
+            renderBundle
+        ).getHtml();
         var clearHtml = html
             .replace("\n", "")
             .replace("\r", "")

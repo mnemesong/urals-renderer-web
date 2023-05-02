@@ -2,8 +2,6 @@ package;
 
 import urals.web.StaticHtmlInjectorTest;
 import urals.web.StaticRenderTest;
-import urals.web.StaticRenderer.staticRender;
-import sneaker.assertion.Asserter.*;
 
 using StringTools;
 

@@ -1,6 +1,5 @@
 package urals.web;
 
-import htmlparser.HtmlNodeElement;
 import htmlparser.HtmlDocument;
 
 using StringTools;
